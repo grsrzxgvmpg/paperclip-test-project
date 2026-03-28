@@ -6,7 +6,17 @@ from converter import (
     miles_to_km,
     kg_to_lbs,
     lbs_to_kg,
+    liter_to_gallon,
+    gallon_to_liter,
 )
+
+
+def test_liter_to_gallon():
+    assert liter_to_gallon(3.78541) == pytest.approx(1.0)
+
+
+def test_gallon_to_liter():
+    assert gallon_to_liter(1.0) == pytest.approx(3.78541)
 
 
 def test_boiling_point():

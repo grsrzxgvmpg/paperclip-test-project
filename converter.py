@@ -23,3 +23,11 @@ def kg_to_lbs(kg: float) -> float:
 
 def lbs_to_kg(lbs: float) -> float:
     return lbs / 2.20462
+
+
+def liter_to_gallon(liter: float) -> float:
+    return liter / 3.78541
+
+
+def gallon_to_liter(gallon: float) -> float:
+    return gallon * 3.78541
