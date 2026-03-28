@@ -31,3 +31,11 @@ def liter_to_gallon(liter: float) -> float:
 
 def gallon_to_liter(gallon: float) -> float:
     return gallon * 3.78541
+
+
+def mph_to_kph(mph: float) -> float:
+    return mph * 1.60934
+
+
+def kph_to_mph(kph: float) -> float:
+    return kph / 1.60934

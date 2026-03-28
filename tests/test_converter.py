@@ -8,6 +8,8 @@ from converter import (
     lbs_to_kg,
     liter_to_gallon,
     gallon_to_liter,
+    mph_to_kph,
+    kph_to_mph,
 )
 
 
@@ -45,3 +47,11 @@ def test_kg_to_lbs():
 
 def test_lbs_to_kg():
     assert lbs_to_kg(1.0) == pytest.approx(0.453592, rel=1e-3)
+
+
+def test_mph_to_kph():
+    assert mph_to_kph(1.0) == pytest.approx(1.60934, rel=1e-3)
+
+
+def test_kph_to_mph():
+    assert kph_to_mph(1.60934) == pytest.approx(1.0, rel=1e-3)
