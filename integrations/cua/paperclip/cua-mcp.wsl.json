@@ -1,0 +1,21 @@
+{
+  "mcpServers": {
+    "cua": {
+      "command": "python3",
+      "args": [
+        "integrations/cua/mcp/cua_mcp_proxy.py",
+        "--driver",
+        "cua-driver.exe",
+        "--socket",
+        "\\\\.\\pipe\\cua-driver",
+        "--inline-structured",
+        "--parse-min-confidence",
+        "0.5",
+        "--parse-max-regions",
+        "150",
+        "--allow",
+        "launch_app,list_windows,get_window_state,parse_visual_regions,click,double_click,scroll,type_text,press_key,hotkey"
+      ]
+    }
+  }
+}

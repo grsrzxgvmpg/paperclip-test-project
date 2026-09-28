@@ -1,0 +1,18 @@
+{
+  "adapterType": "claude_local",
+  "adapterConfig": {
+    "engine": "cli",
+    "cwd": "/home/<you>/paperclip-test-project",
+    "extraArgs": [
+      "--mcp-config",
+      "/home/<you>/paperclip-test-project/integrations/cua/paperclip/cua-mcp.wsl.json",
+      "--append-system-prompt-file",
+      "/home/<you>/paperclip-test-project/integrations/cua/mcp/local-agent-instructions.md"
+    ],
+    "env": {
+      "CUA_DRIVER_RS_TELEMETRY_ENABLED": "false"
+    },
+    "maxTurnsPerRun": 40,
+    "timeoutSec": 1800
+  }
+}
