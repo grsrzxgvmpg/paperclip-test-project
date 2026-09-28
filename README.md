@@ -15,3 +15,7 @@ print(km_to_miles(5))              # 3.106855
 ```bash
 pytest tests/ -v
 ```
+
+## Integrations
+
+- [`integrations/cua/`](integrations/cua/README.md): evaluation of Cua Perception, plus configs to drive Windows desktop apps from Claude Code, OpenClaw, Paperclip and local llama-server models through Cua Driver.

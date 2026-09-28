@@ -1,0 +1,65 @@
+# Cua Driver capability manifest (version 3) for unattended agents on the Windows host.
+#
+# Use with:  CUA_DRIVER_PERMISSION_MODE=bounded
+#            CUA_DRIVER_CAPABILITY_MANIFEST_FILE=%USERPROFILE%\.cua\cua-capabilities.yaml
+#            CUA_DRIVER_CAPABILITY_MANIFEST_APPROVED=1
+# (Install-CuaStack.ps1 -PinBoundedMode sets these and restarts the daemon.)
+#
+# The manifest fails closed: an app, path or tool not listed here is refused
+# with bounded_resource_outside_manifest / permission_denied. Anyone who can
+# edit this file or those variables can change what agents may do, so keep the
+# file in your profile, not in a shared or synced folder.
+#
+# Executable paths must be the canonical path of the process that owns the
+# window, not a launcher stub. On Windows 11, calc.exe and notepad.exe in
+# System32 are stubs for Store apps under C:\Program Files\WindowsApps\...,
+# whose folder name changes on every app update. Read the real path from a
+# running instance:
+#     (Get-Process -Name <name>).Path
+# Prefer classic Win32 apps with stable install paths for unattended work.
+
+version: 3
+expires_after: 8h      # re-approve at least once per working day
+idle_timeout: 30m
+
+allow:
+  tools:
+    - start_session
+    - end_session
+    - list_apps
+    - list_windows
+    - launch_app
+    - get_window_state
+    - parse_visual_regions   # the Cua Perception tool; returns not_installed if the extension is absent
+    - click
+    - double_click
+    - scroll
+    - type_text
+    - press_key
+    - hotkey
+    # Deliberately omitted: get_desktop_state (full-screen capture), drag,
+    # set_value, kill_app, browser_* (browser work needs its own origin-scoped
+    # manifest and runtime; see README).
+
+resources:
+  apps:
+    # EXAMPLE ENTRIES: replace these with the apps your agents should operate.
+    - executable: 'C:\Program Files\Notepad++\notepad++.exe'
+      launch: true
+      windows: all
+      terminate: driver_launched
+    - executable: 'C:\Program Files\LibreOffice\program\soffice.bin'
+      launch: true
+      windows: all
+      terminate: driver_launched
+
+  files:
+    read:
+      - dir: 'C:\Users\SB\AgentWork\input'
+        recursive: true
+    write:
+      - dir: 'C:\Users\SB\AgentWork\output'
+        recursive: true
+
+  desktop:
+    display: false   # no whole-display capture or desktop-coordinate input
